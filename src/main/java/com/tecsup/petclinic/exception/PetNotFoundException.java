@@ -1,8 +1,7 @@
 package com.tecsup.petclinic.exception;
 
 /**
- * 
- * @author jgomezm
+ *
  *
  */
 public class PetNotFoundException extends Exception {
