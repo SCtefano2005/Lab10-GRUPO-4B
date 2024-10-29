@@ -41,5 +41,23 @@ public class VetServiceTest {
         assertEquals(FIRST_NAME_EXPECTED, vet.getFirstName());
     }
 
+    /** Es para crear una vet */
+    @Test
+    public void testCreateVet() {
+
+        String FIRST_NAME = "Sarah";
+        String LAST_NAME = "Connor";
+
+        Vet vet = new Vet(FIRST_NAME, LAST_NAME);
+
+        Vet vetCreated = this.vetService.create(vet);
+
+        log.info("VET CREATED :" + vetCreated.toString());
+
+        assertNotNull(vetCreated.getId());
+        assertEquals(FIRST_NAME, vetCreated.getFirstName());
+        assertEquals(LAST_NAME, vetCreated.getLastName());
+    }
+
 }
 
