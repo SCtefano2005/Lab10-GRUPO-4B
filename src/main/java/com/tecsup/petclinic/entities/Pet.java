@@ -8,7 +8,7 @@ import java.sql.Date;
 
 /**
  * 
- * @author jgomezm
+
  *
  */
 @Entity(name = "pets")

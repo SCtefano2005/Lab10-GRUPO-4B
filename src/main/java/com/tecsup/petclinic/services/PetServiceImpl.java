@@ -11,8 +11,7 @@ import com.tecsup.petclinic.exception.PetNotFoundException;
 import com.tecsup.petclinic.repositories.PetRepository;
 
 /**
- * 
- * @author jgomezm
+ *
  *
  */
 @Service
