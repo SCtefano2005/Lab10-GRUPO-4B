@@ -59,5 +59,31 @@ public class VetServiceTest {
         assertEquals(LAST_NAME, vetCreated.getLastName());
     }
 
+    /** Es para actualizar un vet */
+    @Test
+    public void testUpdateVet() {
+
+        String FIRST_NAME = "Michael";
+        String LAST_NAME = "Smith";
+
+        String UP_FIRST_NAME = "MichaelUpdated";
+        String UP_LAST_NAME = "SmithUpdated";
+
+        Vet vet = new Vet(FIRST_NAME, LAST_NAME);
+
+        log.info(">" + vet);
+        Vet vetCreated = this.vetService.create(vet);
+        log.info(">>" + vetCreated);
+
+        vetCreated.setFirstName(UP_FIRST_NAME);
+        vetCreated.setLastName(UP_LAST_NAME);
+
+        Vet upgradedVet = this.vetService.update(vetCreated);
+        log.info(">>>>" + upgradedVet);
+
+        assertEquals(UP_FIRST_NAME, upgradedVet.getFirstName());
+        assertEquals(UP_LAST_NAME, upgradedVet.getLastName());
+    }
+
 }
 
