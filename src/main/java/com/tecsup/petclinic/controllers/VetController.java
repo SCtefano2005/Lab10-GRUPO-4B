@@ -30,6 +30,15 @@ public class VetController {
         return vetRepository.save(vet);
     }
 
-
+    // dele
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteVet(@PathVariable Integer id) {
+        if (vetRepository.existsById(id)) {
+            vetRepository.deleteById(id);
+            return ResponseEntity.noContent().build();
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
 }

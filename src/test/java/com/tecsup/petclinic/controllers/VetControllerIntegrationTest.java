@@ -49,7 +49,18 @@ public class VetControllerIntegrationTest {
                 .andExpect(jsonPath("$.lastName").value("Doe"));
     }
 
+    @Test
+    public void shouldDeleteVet() throws Exception {
+        Vet vet = new Vet();
+        vet.setFirstName("Dr. Delete");
+        vet.setLastName("Doe");
+        vet = vetRepository.save(vet);
 
+
+        mockMvc.perform(delete("/api/vets/" + vet.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
 
 
 }
