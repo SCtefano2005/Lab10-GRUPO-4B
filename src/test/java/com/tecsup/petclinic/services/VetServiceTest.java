@@ -44,7 +44,7 @@ public class VetServiceTest {
     @Test
     public void testFindVetById() {
 
-        String FIRST_NAME_EXPECTED = "James";
+        String FIRST_NAME_EXPECTED = "MichaelUpdated";
 
         Integer ID = 1;
 
