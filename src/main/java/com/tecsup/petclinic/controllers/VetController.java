@@ -44,7 +44,7 @@ public class VetController {
             return ResponseEntity.notFound().build();
         }
     }
-
+// TO DO
     // dele
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVet(@PathVariable Integer id) {
