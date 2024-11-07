@@ -30,6 +30,21 @@ public class VetController {
         return vetRepository.save(vet);
     }
 
+    // upda
+    @PutMapping("/{id}")
+    public ResponseEntity<Vet> updateVet(@PathVariable Integer id, @RequestBody Vet vetDetails) {
+        Optional<Vet> vet = vetRepository.findById(id);
+        if (vet.isPresent()) {
+            Vet updatedVet = vet.get();
+            updatedVet.setFirstName(vetDetails.getFirstName());
+            updatedVet.setLastName(vetDetails.getLastName());
+            vetRepository.save(updatedVet);
+            return ResponseEntity.ok(updatedVet);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     // dele
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteVet(@PathVariable Integer id) {

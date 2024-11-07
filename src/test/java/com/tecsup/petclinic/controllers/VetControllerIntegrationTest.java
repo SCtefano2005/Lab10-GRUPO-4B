@@ -50,6 +50,25 @@ public class VetControllerIntegrationTest {
     }
 
     @Test
+    public void shouldUpdateVet() throws Exception {
+
+        Vet vet = new Vet();
+        vet.setFirstName("Dr. John");
+        vet.setLastName("Doe");
+        vet = vetRepository.save(vet);
+
+
+        String updatedVetJson = "{ \"firstName\": \"Dr. John Updated\", \"lastName\": \"Doe Updated\" }";
+
+        mockMvc.perform(put("/api/vets/" + vet.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(updatedVetJson))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Dr. John Updated"))
+                .andExpect(jsonPath("$.lastName").value("Doe Updated"));
+    }
+
+    @Test
     public void shouldDeleteVet() throws Exception {
         Vet vet = new Vet();
         vet.setFirstName("Dr. Delete");
