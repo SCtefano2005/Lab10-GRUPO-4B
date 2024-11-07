@@ -17,7 +17,12 @@ public class VetController {
     @Autowired
     private VetRepository vetRepository;
 
-
+    // busca
+    @GetMapping("/{id}")
+    public ResponseEntity<Vet> getVetById(@PathVariable Integer id) {
+        Optional<Vet> vet = vetRepository.findById(id);
+        return vet.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    }
 
     // crea
     @PostMapping

@@ -2,28 +2,27 @@
 # = PARAMETERS H2
 # ===============================
 
-# ===============================
-# = DATA SOURCE
-# ===============================
 spring:
   datasource:
     url: jdbc:h2:mem:testdb;MODE=Oracle;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
     username: sa
     password: sa
+    driver-class-name: org.h2.Driver # Añadir el driver explícitamente
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
     hibernate:
       ddl-auto: create-drop
       format_sql: true
-    defer-datasource-initialization: true
+    defer-datasource-initialization: false # Cambiar a false para que data.sql se cargue al iniciar
   h2:
     console:
       enabled: true
       path: /h2
   sql:
     init:
-      data-locations: classpath:data.sql # Especifica el archivo para datos iniciales
+      mode: always # Asegura que el script se ejecute siempre
+      data-locations: classpath:data.sql # Archivo para datos iniciales, debe estar en src/main/resources
   data:
     rest:
       basePath: /api
@@ -35,7 +34,7 @@ logging:
   file:
     name: /Users/jgomez/temp/application.log
   pattern:
-    console: "%d{yy-MM-dd HH:mm:ss} - %logger{36} - %msg%n" # Patrón de logging para consola
+    console: "%d{yy-MM-dd HH:mm:ss} - %logger{36} - %msg%n"
 
 # Configuración del servidor
 server:

@@ -22,7 +22,20 @@ public class VetControllerIntegrationTest {
     @Autowired
     private VetRepository vetRepository;
 
+    @Test
+    public void shouldReturnVetById() throws Exception {
 
+        Vet vet = new Vet();
+        vet.setFirstName("Dr. Smith");
+        vet.setLastName("Doe");
+        vet = vetRepository.save(vet);
+
+        mockMvc.perform(get("/api/vets/" + vet.getId())
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName").value("Dr. Smith"))
+                .andExpect(jsonPath("$.lastName").value("Doe"));
+    }
 
     @Test
     public void shouldCreateVet() throws Exception {
